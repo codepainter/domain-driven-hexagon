@@ -1,14 +1,19 @@
-import { DomainEvent } from 'src/core/domain-events';
-import { ID } from 'src/core/value-objects/id.value-object';
-import { Address } from '../value-objects/address.value-object';
-import { Email } from '../value-objects/email.value-object';
+import { DomainEvent, DomainEventProps } from '@libs/ddd';
 
 export class UserCreatedDomainEvent extends DomainEvent {
-  constructor(
-    public readonly aggregateId: ID,
-    public readonly email: Email,
-    public readonly address: Address,
-  ) {
-    super();
+  readonly email: string;
+
+  readonly country: string;
+
+  readonly postalCode: string;
+
+  readonly street: string;
+
+  constructor(props: DomainEventProps<UserCreatedDomainEvent>) {
+    super(props);
+    this.email = props.email;
+    this.country = props.country;
+    this.postalCode = props.postalCode;
+    this.street = props.street;
   }
 }
